@@ -23,6 +23,7 @@ vagrant ssh box-name
 
 ### 3. Servers list
 
+|VM's|
 |:-------------- |
 |Docker|
 |RabbitMQ|
