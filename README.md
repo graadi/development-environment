@@ -1,8 +1,8 @@
-### 1. Install the following plugin
+### Prerequisites
 vagrant plugin install vagrant-vbguest
 
 
-### 2. Commnands
+### Useful Vagrant commands
 
 * How to start a box:
 ```
@@ -21,7 +21,7 @@ vagrant destroy box-name
 vagrant ssh box-name
 ```
 
-### 3. Servers list
+### Servers list
 
 |VM's|
 |:-------------- |
