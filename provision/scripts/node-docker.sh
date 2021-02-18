@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Install test version of docker engine, also shell completions
+echo 'Installing docker engine.'
 curl -fsSL https://get.docker.com/ | sh
 
 # Add the vagrant user to the docker group

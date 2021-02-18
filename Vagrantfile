@@ -4,7 +4,6 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "centos/7"
-  #config.vm.synced_folder "provision/files/epel", "/opt", type: "virtualbox"
   config.vm.provision "shell", path: "provision/scripts/node.sh", privileged: true
 
   config.vm.provider "virtualbox" do |vb|
