@@ -35,13 +35,13 @@ vagrant destroy box-name
 ```
 vagrant ssh box-name
 ```
-### List of servers that will be created by the Vagrantfile
+### List of machines (servers) that will be spun up by the Vagrantfile
 
 |VM's|
 |:-------------- |
 |Docker|
 |RabbitMQ|
-|Tomcat-8 - first instance|
-|Tomcat-8 - second instance - with a selft-signed certificate|
+|Tomcat 8 - first instance|
+|Tomcat 8 - second instance - with a selft-signed certificate|
 |MySQL|
 |HAProxy - load balancer - both tomcats will be accessible through it|
