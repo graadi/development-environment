@@ -37,18 +37,18 @@ Vagrant.configure("2") do |config|
 		tomcat8.vm.synced_folder "provision/files/tomcat8", "/opt/vagrant", nfs: true
 		tomcat8.vm.hostname="tomcat8-01.dev.internal"
 		tomcat8.vm.network "private_network", ip: "192.168.0.30"
-    tomcat8.vm.provision "shell", path: "provision/node-tomcat8.sh", privileged: true
+    tomcat8.vm.provision "shell", path: "provision/scripts/node-tomcat8.sh", privileged: true
    end
 
    # additional tomcat server
-   config.vm.define "tomcat8" do |tomcat8ssl|
-    tomcat8ssl.vm.name = "tomcat8-ssl"
-    tomcat8ssl.vm.synced_folder "provision/files/tomcat8", "/opt/vagrant", nfs: true
-    tomcat8ssl.vm.synced_folder "provision/files/api", "/opt/vagrant/api", nfs: true
-    tomcat8ssl.vm.hostname="tomcat8-02.dev.internal"
-    tomcat8ssl.vm.network "private_network", ip: "192.168.0.31"
-    tomcat8ssl.vm.provision "shell", path: "provision/node-tomcat8.sh", privileged: true
-    tomcat8ssl.vm.provision "shell", path: "provision/node-api.sh", privileged: true
+   config.vm.define "tomcat8" do |api|
+    api.vm.name = "api"
+    api.vm.synced_folder "provision/files/tomcat8", "/opt/vagrant", nfs: true
+    api.vm.synced_folder "provision/files/api", "/opt/vagrant/api", nfs: true
+    api.vm.hostname="tomcat8-02.dev.internal"
+    api.vm.network "private_network", ip: "192.168.0.31"
+    api.vm.provision "shell", path: "provision/scripts/node-tomcat8.sh", privileged: true
+    api.vm.provision "shell", path: "provision/scripts/node-api.sh", privileged: true
    end
 
    # mysql
