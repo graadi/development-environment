@@ -7,10 +7,16 @@ The configuration has been tested using a Windows 10 host with Virtual Box and H
 ### Prerequisites
 
 Vagrant-vbguest is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.
-To successfuly run the Vagrantfile, the plugin must be installed first.
+To successfuly run the Vagrantfile and to mount ans sync the repository folders into Vagrant, the plugin must be installed first.
 
 ```
 vagrant plugin install vagrant-vbguest
+```
+If the above plugin does not work, uninstall and fallback to an early version of it, as following:
+
+```
+vagrant plugin uninstall vagrant-vbguest
+vagrant plugin install vagrant-vbguest --plugin-version 0.21
 ```
 
 To update your plugins after a Vagrant upgrade, you can execute the following command.
