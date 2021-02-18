@@ -1,8 +1,7 @@
 ### Prerequisites
 
-## Vagrant vbguest plugin
-
 Vagrant-vbguest is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.
+To successfuly run the Vagrantfile, the plugin must be installed first.
 
 ```
 vagrant plugin install vagrant-vbguest
@@ -36,7 +35,6 @@ vagrant destroy box-name
 ```
 vagrant ssh box-name
 ```
-
 ### Servers list
 
 |VM's|
