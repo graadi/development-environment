@@ -37,7 +37,6 @@ vagrant ssh box-name
 ```
 ### List of machines (servers) that will be spun up by the Vagrantfile
 
-|VM's|
 |:-------------- |
 |Docker|
 |RabbitMQ|
