@@ -72,5 +72,4 @@ Vagrant.configure("2") do |config|
     haproxy.vm.provision "shell", path: "provision/scripts/node-haproxy.sh", privileged: true
    end
 
-
 end
