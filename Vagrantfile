@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
     rabbitmq.vm.name = "rabbitmq"
 		rabbitmq.vm.hostname="rabbitmq-01.dev.internal"
 		rabbitmq.vm.network "private_network", ip: "192.168.0.20"
-    rabbitmq.vm.provision "shell", path: "provision/node-rabbitmq.sh", privileged: true
+    rabbitmq.vm.provision "shell", path: "provision/scripts/node-rabbitmq.sh", privileged: true
    end
 
    # tomcat8
