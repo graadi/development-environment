@@ -17,31 +17,31 @@ If an update doesn’t resolve the problem or something has corrupted your curre
 vagrant plugin repair vagrant-vbguest
 ```
 
-### Useful Vagrant commands
+### Useful commands
 
-* Start a box:
+* Start a vagrant machine:
 ```
 vagrant up box-name
 ```
-* Stop a box:   
+* Stop a vagrant machine:   
 ```
 vagrant halt box-name
 ```
-* Remove a box:
+* Remove a vagrant machine:
 ```
 vagrant destroy box-name
 ```
-* Connect to a box (ssh):
+* Connect to a vagrant machine using ssh:
 ```
 vagrant ssh box-name
 ```
-### Servers list
+### List of servers that will be created by the Vagrantfile
 
 |VM's|
 |:-------------- |
 |Docker|
 |RabbitMQ|
 |Tomcat-8|
-|Tomcat-8|
+|Tomcat-8 with a selft-signed certificate|
 |MySQL|
-|HAProxy|
+|HAProxy (Load balancer) - both tomcats will be accessible through it|
