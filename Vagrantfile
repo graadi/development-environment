@@ -53,12 +53,12 @@ Vagrant.configure("2") do |config|
 
    # mysql
    config.vm.define "mysql" do |mysql|
-     mysql.vm.name = "database-server"
+     mysql.vm.name = "mysql-database-server"
      mysql.vm.synced_folder "provision/files/databases", "/opt/vagrant/databases", nfs: true
      mysql.vm.hostname="mysql-01.dev.internal"
      mysql.vm.network "private_network", ip: "192.168.0.40"
      mysql.vm.network "forwarded_port", guest: 3306, host: 3360
-     mysql.vm.provision "shell", path: "provision/node-mysql.sh", privileged: true
+     mysql.vm.provision "shell", path: "provision/sripts/node-mysql.sh", privileged: true
      mysql.vm.provider :virtualbox do |vb|
        vb.customize ["modifyvm", :id, "--memory", "2048"]
        vb.customize ["modifyvm", :id, "--cpus", "2"]
