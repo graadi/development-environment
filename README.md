@@ -1,3 +1,9 @@
+# Virtual machines for development purpose with Vagrant
+
+The configuration has been tested using a Windows 10 host with Virtual Box and Hyper-V virtualization support. Virtualization must be enabled in case you get the following error, see the snapshot below:
+
+<img src="https://raw.githubusercontent.com/graadi/development-environment/main/img/virtualization-error.png" />
+
 ### Prerequisites
 
 Vagrant-vbguest is a Vagrant plugin which automatically installs the host's VirtualBox Guest Additions on the guest system.

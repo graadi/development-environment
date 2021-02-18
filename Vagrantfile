@@ -7,11 +7,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "provision/scripts/node.sh", privileged: true
 
   config.vm.provider "virtualbox" do |vb|
+    vb.name = "vagrant-orchestration"
+    
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
-
+    
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "512"
     vb.cpus = 1
    end
 
