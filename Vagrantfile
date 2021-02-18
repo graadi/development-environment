@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
    config.vm.define "haproxy" do |haproxy|
     haproxy.vm.hostname="lb-01.dev.internal"
     haproxy.vm.network "private_network", ip: "192.168.0.50"
-    haproxy.vm.provision "shell", path: "provision/node-haproxy.sh", privileged: true
+    haproxy.vm.provision "shell", path: "provision/scripts/node-haproxy.sh", privileged: true
    end
 
 
