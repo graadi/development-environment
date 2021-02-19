@@ -1,26 +1,32 @@
 #!/bin/bash
 
 # install erlang
-wget https://bintray.com/rabbitmq-erlang/rpm/download_file?file_path=erlang%2F23%2Fel%2F7%2Fx86_64%2Ferlang-23.2.4-1.el7.x86_64.rpm -O erlang-23.2.4-1.el7.x86_64.rpm
+wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
+echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/erlang.list
 
-sudo rpm -Uvh erlang-23.2.4-1.el7.x86_64.rpm
-sudo yum install erlang -y
+sudo apt-get update
+sudo apt-get install erlang -y
 
-erl
+# add rabbitmq repository to ubuntu 18.04
+wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add -
+wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
+echo "deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
 
 # install rabbitmq
-wget https://bintray.com/rabbitmq/rpm/download_file?file_path=rabbitmq-server%2Fv3.8.x%2Fel%2F7%2Fnoarch%2Frabbitmq-server-3.8.12-1.el7.noarch.rpm -O rabbitmq.rpm
+sudo apt-get update
+sudo apt-get install rabbitmq-server -y
 
-sudo rpm -Uvh rabbitmq.rpm
-sudo yum install rabbitmq-server -y
+# post install verification
+sudo systemctl status  rabbitmq-server.service
+sudo rabbitmqctl status | grep RabbitMQ
+
+systemctl is-enabled rabbitmq-server.service
 
 # modify firewall rules
-sudo firewall-cmd --zone=public --permanent --add-port=4369/tcp --add-port=25672/tcp --add-port=5671-5672/tcp --add-port=15672/tcp  --add-port=61613-61614/tcp --add-port=1883/tcp --add-port=8883/tcp
-sudo firewall-cmd --reload
-
-# add the service configuration for startup
-sudo systemctl start rabbitmq-server.service
-sudo systemctl enable rabbitmq-server.service
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw allow 5672,15672,4369,25672/tcp
+sudo ufw status
 
 # enable and use the RabbitMQ management console
 sudo rabbitmq-plugins enable rabbitmq_management
@@ -29,7 +35,4 @@ sudo chown -R rabbitmq:rabbitmq /var/lib/rabbitmq/
 sudo rabbitmqctl add_user mqadmin UT67Uw856EyerMo3uZxh
 sudo rabbitmqctl set_user_tags mqadmin administrator
 sudo rabbitmqctl set_permissions -p / mqadmin ".*" ".*" ".*"
-
-# enable rabbitmq ui
-sudo rabbitmq-plugins enable rabbitmq_management
 sudo systemctl restart rabbitmq-server

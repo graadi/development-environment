@@ -24,7 +24,18 @@ Vagrant.configure("2") do |config|
     docker.vm.provision "shell", path: "provision/scripts/node-docker.sh", privileged: true
     
     docker.vm.provider :virtualbox do |vb|
-      vb.name = "docker-engine"
+      vb.name = "docker"
     end    
   end
+
+  # rabbitmq node
+  config.vm.define "rabbitmq" do |rabbitmq|
+    
+    rabbitmq.vm.hostname="rabbitmq-01.dev.internal"
+    rabbitmq.vm.network "private_network", ip: "192.168.0.20"
+    rabbitmq.vm.provision "shell", path: "provision/scripts/node-rabbitmq.sh", privileged: true
+    rabbitmq.vm.provider :virtualbox do |vb|
+      vb.name = "rabbitmq"
+    end        
+  end  
 end
