@@ -20,6 +20,7 @@ docker-compose --version
 
 # start the docker engine
 sudo systemctl status docker
+sudo systemctl is-enabled docker.service
 
 # verify installation
 sudo docker run hello-world

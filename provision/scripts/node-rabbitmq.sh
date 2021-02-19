@@ -18,9 +18,7 @@ sudo apt-get install rabbitmq-server -y
 
 # post install verification
 sudo systemctl status  rabbitmq-server.service
-sudo rabbitmqctl status | grep RabbitMQ
-
-systemctl is-enabled rabbitmq-server.service
+sudo systemctl is-enabled rabbitmq-server.service
 
 # modify firewall rules
 sudo ufw allow ssh
