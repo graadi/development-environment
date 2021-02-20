@@ -41,6 +41,7 @@ Vagrant.configure("2") do |config|
   
   # loadbalancer node
   #config.vm.define "haproxy" do |haproxy|
+
     #haproxy.vm.hostname="lb-01.dev.internal"
     #haproxy.vm.network "private_network", ip: "192.168.0.50"
     #haproxy.vm.provision "shell", path: "provision/scripts/node-haproxy.sh", privileged: true
@@ -51,11 +52,12 @@ Vagrant.configure("2") do |config|
   
   # mysql database
     config.vm.define "mysql" do |mysql|
-    mysql.vm.synced_folder "provision/files/databases", "/opt/vagrant/databases", nfs: true
+      
+    mysql.vm.synced_folder "provision/files/databases", "/opt/vagrant/databases", type: "virtualbox"
     mysql.vm.hostname="mysql-01.dev.internal"
     mysql.vm.network "private_network", ip: "192.168.0.40"
     mysql.vm.network "forwarded_port", guest: 3306, host: 3360
-    mysql.vm.provision "shell", path: "provision/sripts/node-mysql.sh", privileged: true
+    mysql.vm.provision "shell", path: "provision/scripts/node-mysql.sh", privileged: true
     mysql.vm.provider :virtualbox do |vb|
       vb.name = "mysql"
       vb.customize ["modifyvm", :id, "--memory", "1024"]

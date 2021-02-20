@@ -1,15 +1,10 @@
 #!/bin/bash
 
 # prerequisites
-cd /tmp
-curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
-ls
-sudo dpkg -i mysql-apt-config*
-sudo apt update
-rm mysql-apt-config*
+sudo apt-get update
 
 # install mysql server
-sudo apt install mysql-server
+sudo apt-get install mysql-server -y
 
 # /etc/my.cnf
 sudo cp '/opt/vagrant/databases/configuration/my.cnf' '/etc/my.cnf'
