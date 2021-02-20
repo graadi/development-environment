@@ -53,8 +53,8 @@ vagrant ssh box-name
 |:-------------- |
 |Docker|
 |RabbitMQ|
-|Tomcat|
-|MySQL|
 |HAProxy|
+|MySQL|
+|Tomcat8|
 
 <img src="https://raw.githubusercontent.com/graadi/development-environment/main/img/vb.png" />
