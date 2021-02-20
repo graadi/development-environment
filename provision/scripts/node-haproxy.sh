@@ -1,16 +1,20 @@
 #!/usr/bin/env bash
 
-# Install haproxy
-yum install haproxy -y
+# prerequisites
+sudo apt-get update
 
-# Configure haproxy
+# install loadbalancer
+sudo apt-get install haproxy -y
+
+# configuration
 cat > /etc/default/haproxy <<EOD
 # Set ENABLED to 1 if you want the init script to start haproxy.
 ENABLED=1
 # Add extra flags here.
 #EXTRAOPTS="-de -m 16"
 EOD
-  cat > /etc/haproxy/haproxy.cfg <<EOD
+
+cat > /etc/haproxy/haproxy.cfg <<EOD
 global
     daemon
     maxconn 256
@@ -44,13 +48,9 @@ listen admin
     stats enable
 EOD
 
-sudo service haproxy start
+# verify configuration
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
 
-sudo firewall-cmd --zone=public --permanent --add-port=9000/tcp
-sudo firewall-cmd --zone=public --permanent --add-port=8443/tcp
-sudo firewall-cmd --zone=public --permanent --add-port=8080/tcp
-sudo firewall-cmd --zone=public --permanent --add-port=8081/tcp
-sudo firewall-cmd --zone=public --permanent --add-port=80/tcp
-sudo service firewalld restart
-
-# http://192.168.0.14:8080/haproxy?stats   To see the stats
+# service status
+sudo systemctl enable haproxy
+sudo service haproxy status

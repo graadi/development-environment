@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Install MySQL
-wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
-sudo rpm -ivh mysql57-community-release-el7-11.noarch.rpm
-sudo yum install mysql-server -y
+# prerequisites
+cd /tmp
+curl -OL https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
+ls
+sudo dpkg -i mysql-apt-config*
+sudo apt update
+rm mysql-apt-config*
 
-sudo firewall-cmd --zone=public --permanent --add-port=3306/tcp
-sudo service firewalld restart
-
+# install mysql server
+sudo apt install mysql-server
 
 # /etc/my.cnf
 sudo cp '/opt/vagrant/databases/configuration/my.cnf' '/etc/my.cnf'
@@ -15,8 +17,8 @@ sudo chown -R mysql /var/lib/mysql
 sudo chgrp -R mysql /var/lib/mysql
 
 # Start MySQL
-sudo systemctl start mysqld
-sudo systemctl enable mysqld
+sudo systemctl start mysql
+sudo systemctl enable mysql
 
 
 MYSQL_TEMPORARY_ROOT_PASSWORD=$(grep "temporary password" /var/log/mysqld.log | awk '{print $11}')

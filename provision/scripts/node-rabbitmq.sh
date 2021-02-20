@@ -20,12 +20,6 @@ sudo apt-get install rabbitmq-server -y
 sudo systemctl status  rabbitmq-server.service
 sudo systemctl is-enabled rabbitmq-server.service
 
-# modify firewall rules
-sudo ufw allow ssh
-sudo ufw enable
-sudo ufw allow 5672,15672,4369,25672/tcp
-sudo ufw status
-
 # enable and use the RabbitMQ management console
 sudo rabbitmq-plugins enable rabbitmq_management
 sudo chown -R rabbitmq:rabbitmq /var/lib/rabbitmq/
