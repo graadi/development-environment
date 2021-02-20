@@ -1,5 +1,5 @@
 # drop the pet table if it exists, then recreate it
-
+USE menagerie;
 DROP TABLE IF EXISTS pet;
 
 CREATE TABLE pet

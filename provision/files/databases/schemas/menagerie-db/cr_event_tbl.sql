@@ -1,5 +1,5 @@
 # drop the event table if it exists, then recreate it
-
+USE menagerie;
 DROP TABLE IF EXISTS event;
 
 CREATE TABLE event

@@ -1,2 +1,3 @@
 DROP DATABASE IF EXISTS menagerie;
 CREATE DATABASE IF NOT EXISTS menagerie;
+USE menagerie;

@@ -53,7 +53,6 @@ vagrant ssh box-name
 |:-------------- |
 |Docker|
 |RabbitMQ|
-|Tomcat 8 - first instance|
-|Tomcat 8 - second instance - with a selft-signed certificate|
+|Tomcat|
 |MySQL|
-|HAProxy - load balancer - both tomcats will be accessible through it|
+|HAProxy|
