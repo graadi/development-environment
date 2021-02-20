@@ -56,3 +56,5 @@ vagrant ssh box-name
 |Tomcat|
 |MySQL|
 |HAProxy|
+
+<img src="https://raw.githubusercontent.com/graadi/development-environment/main/img/vb.png" />
