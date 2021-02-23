@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# parameters list
+dockerip="192.168.0.10"
+rabbitmqip="192.168.0.20"
+haproxyip="192.168.0.30"
+mysqlip="192.168.0.40"
+tomcatip="192.168.0.50"
+
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/bionic64"
@@ -20,7 +27,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "docker" do |docker|
 
     docker.vm.hostname="docker-01.dev.internal"
-    docker.vm.network "private_network", ip: "192.168.0.10"
+    docker.vm.network "private_network", ip: "#{dockerip}"
     docker.vm.provision "shell", path: "provision/scripts/node-docker.sh", privileged: true
     
     docker.vm.provider :virtualbox do |vb|
@@ -32,7 +39,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "rabbitmq" do |rabbitmq|
     
     rabbitmq.vm.hostname="rabbitmq-01.dev.internal"
-    rabbitmq.vm.network "private_network", ip: "192.168.0.20"
+    rabbitmq.vm.network "private_network", ip: "#{rabbitmqip}"
     rabbitmq.vm.provision "shell", path: "provision/scripts/node-rabbitmq.sh", privileged: true
     rabbitmq.vm.provider :virtualbox do |vb|
       vb.name = "rabbitmq"
@@ -43,7 +50,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "haproxy" do |haproxy|
 
     haproxy.vm.hostname="lb-01.dev.internal"
-    haproxy.vm.network "private_network", ip: "192.168.0.50"
+    haproxy.vm.network "private_network", ip: "#{haproxyip}"
     haproxy.vm.provision "shell", path: "provision/scripts/node-haproxy.sh", privileged: true
     haproxy.vm.provider :virtualbox do |vb|
       vb.name = "haproxy"
@@ -55,7 +62,7 @@ Vagrant.configure("2") do |config|
 
     mysql.vm.synced_folder "provision/files/databases", "/opt/vagrant/databases", type: "virtualbox"
     mysql.vm.hostname="mysql-01.dev.internal"
-    mysql.vm.network "private_network", ip: "192.168.0.40"
+    mysql.vm.network "private_network", ip: "#{mysqlip}"
     mysql.vm.network "forwarded_port", guest: 3306, host: 3360
     mysql.vm.provision "shell", path: "provision/scripts/node-mysql.sh", privileged: true
     mysql.vm.provider :virtualbox do |vb|
@@ -71,7 +78,7 @@ Vagrant.configure("2") do |config|
     tomcat8.vm.synced_folder "provision/files/tomcat8", "/opt/vagrant", type: "virtualbox"
     tomcat8.vm.synced_folder "provision/files/api", "/opt/vagrant/api", type: "virtualbox"
     tomcat8.vm.hostname="tomcat.dev.internal"
-    tomcat8.vm.network "private_network", ip: "192.168.0.30"
+    tomcat8.vm.network "private_network", ip: "#{tomcatip}"
     tomcat8.vm.provision "shell", path: "provision/scripts/node-tomcat8.sh", privileged: true
     tomcat8.vm.provision "shell", path: "provision/scripts/node-api.sh", privileged: true
     tomcat8.vm.provider :virtualbox do |vb|
