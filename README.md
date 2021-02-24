@@ -56,5 +56,6 @@ vagrant ssh box-name
 |HAProxy|
 |MySQL|
 |Tomcat8|
+
 For the tomcat server, there will be instructions to create and deploy a self signed certificate.
 <img src="https://raw.githubusercontent.com/graadi/development-environment/main/img/vb.png" />
