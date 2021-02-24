@@ -57,5 +57,6 @@ vagrant ssh box-name
 |MySQL|
 |Tomcat8|
 
-For the tomcat server, there will be instructions to create and deploy a self signed certificate.
+For the tomcat server, there will be instructions to create and deploy a self signed certificate. The below snapshot shows the VM's that will be created by the Vagrantfile.
+
 <img src="https://raw.githubusercontent.com/graadi/development-environment/main/img/vb.png" />
